@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "lunch-n-learn-firebase",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

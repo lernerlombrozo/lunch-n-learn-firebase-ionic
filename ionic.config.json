@@ -1,0 +1,7 @@
+{
+  "name": "lunch-n-learn-firebase",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
