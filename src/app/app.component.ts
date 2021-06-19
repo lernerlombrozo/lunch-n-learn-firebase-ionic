@@ -10,16 +10,6 @@ import { SessionService } from './services/session/session.service';
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  public appPages = [
-    { icon: 'mail', title: 'Inbox', url: '/folder/Inbox' },
-    { icon: 'paper-plane', title: 'Outbox', url: '/folder/Outbox' },
-    { icon: 'heart', title: 'Favorites', url: '/folder/Favorites' },
-    { icon: 'archive', title: 'Archived', url: '/folder/Archived' },
-    { icon: 'trash', title: 'Trash', url: '/folder/Trash' },
-    { icon: 'warning', title: 'Spam', url: '/folder/Spam' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
   constructor(
     private readonly pushService: PushService,
     private readonly router: Router,
@@ -30,8 +20,8 @@ export class AppComponent {
     firebase.initializeApp(environment.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        const { uid, displayName, email, emailVerified, phoneNumber, photoURL } = user;
-        this.sessionService.setSession({ uid, displayName, email, emailVerified, phoneNumber, photoURL });
+        const { uid, email, phoneNumber } = user;
+        this.sessionService.setSession({ uid, email, phoneNumber });
         this.startNotifications(uid);
         this.router.navigate(['']);
       } else {
@@ -42,10 +32,9 @@ export class AppComponent {
   }
 
   private startNotifications(uid: string) {
-    this.pushService.token.subscribe(firebaseToken => {
-      if (firebaseToken) {
-        this.sessionService.updateSession({ firebaseToken });
-        this.saveToken(firebaseToken, uid);
+    this.pushService.token.subscribe(token => {
+      if (token) {
+        this.saveToken(token, uid);
       }
     });
     this.pushService.startNotifications();

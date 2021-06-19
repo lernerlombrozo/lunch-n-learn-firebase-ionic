@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../auth/auth.service';
+import { SessionService } from '../services/session/session.service';
 
 @Component({
   selector: 'app-pages',
@@ -20,7 +21,12 @@ export class PagesPage {
   constructor(
     private readonly authService: AuthService,
     private readonly alertController: AlertController,
+    private readonly sessionService: SessionService,
   ) {}
+
+  public get session() {
+    return this.sessionService.session;
+  }
 
   public async showSignOutConfirmAlert(): Promise<void> {
     const alert = await this.alertController.create({

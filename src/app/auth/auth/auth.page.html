@@ -29,19 +29,13 @@
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
-          <ion-button type="submit" color="primary" expand="block" [disabled]="!f.valid">
+          <ion-button type="submit" expand="block" [disabled]="!f.valid">
             {{registerMode ? 'Register' : 'Sign In'}}
           </ion-button>
-          <ion-button
-            type="button"
-            color="primary"
-            fill="clear"
-            expand="block"
-            (click)="toggleRegisterMode()"
-          >
+          <ion-button type="button" fill="clear" expand="block" (click)="toggleRegisterMode()">
             {{registerMode ? 'Already':"Don't" }} have an account?
           </ion-button>
-          <ion-button type="button" color="primary" fill="clear" expand="block" routerLink="./password">
+          <ion-button type="button" fill="clear" expand="block" routerLink="./password">
             Forgot password?
           </ion-button>
         </ion-col>

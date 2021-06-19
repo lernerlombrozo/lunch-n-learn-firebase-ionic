@@ -2,6 +2,9 @@
   <ion-menu contentId="main-content" type="overlay">
     <ion-content>
       <ion-list>
+        <ng-container *ngIf="session | async; let session">
+          <ion-note>{{ session.email }}</ion-note>
+        </ng-container>
         <ion-menu-toggle auto-hide="false" *ngFor="let page of appPages; let i = index">
           <ion-item
             [routerLink]="page.url"
