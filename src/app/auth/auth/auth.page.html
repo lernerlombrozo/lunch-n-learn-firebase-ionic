@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{registerMode ? 'Register' : 'Sign In'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">E-Mail</ion-label>
+              <ion-input type="text" ngModel name="email" email required #email="ngModel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!email.valid && email.touched" lines="none" class="error">
+              <ion-label>Must be a valid email</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" ngModel name="password" required #password="ngModel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!password.valid && password.touched" lines="none" class="error">
+              <ion-label>Must not be empty</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button type="submit" color="primary" expand="block" [disabled]="!f.valid">
+            {{registerMode ? 'Register' : 'Sign In'}}
+          </ion-button>
+          <ion-button
+            type="button"
+            color="primary"
+            fill="clear"
+            expand="block"
+            (click)="toggleRegisterMode()"
+          >
+            {{registerMode ? 'Already':"Don't" }} have an account?
+          </ion-button>
+          <ion-button type="button" color="primary" fill="clear" expand="block" routerLink="./password">
+            Forgot password?
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
