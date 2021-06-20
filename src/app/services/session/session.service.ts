@@ -13,6 +13,10 @@ export class SessionService {
     return this._session.asObservable();
   }
 
+  public get currentSession(): Session | null {
+    return this.session$;
+  }
+
   public setSession(session: Partial<Session>) {
     this.session$ = new Session(session);
     this._session.next(this.session$);

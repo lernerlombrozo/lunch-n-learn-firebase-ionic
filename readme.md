@@ -11,3 +11,5 @@
 - build -> authentication -> get started -> Email Password -> Enable
 
 - create a real time db in test mode
+
+- create a firestore db in test mode

@@ -1,7 +1,6 @@
-import 'firebase/messaging';
-
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/app';
+import 'firebase/messaging';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,7 +14,10 @@ export class PwaPushService {
       `assets/service-workers/${environment.firebaseMessagingServiceWorkerFile}`,
     );
     console.log('service worker registration successful');
-    const currentToken = await messaging.getToken({ serviceWorkerRegistration, vapidKey: environment.firebaseWebPushCertificate });
+    const currentToken = await messaging.getToken({
+      serviceWorkerRegistration,
+      vapidKey: environment.firebaseWebPushCertificate,
+    });
     this.handleIncomingMessages(messaging);
     if (!currentToken) {
       console.log('should require permissions');
@@ -24,7 +26,7 @@ export class PwaPushService {
   }
 
   private handleIncomingMessages(messaging: firebase.messaging.Messaging): void {
-    messaging.onMessage((payload) => {
+    messaging.onMessage(payload => {
       console.log('Message received. ', payload);
     });
   }

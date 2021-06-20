@@ -10,12 +10,8 @@ import { SessionService } from '../services/session/session.service';
 })
 export class PagesPage {
   public appPages = [
-    { icon: 'person-circle', title: 'Profile', url: '/profile' },
-    { icon: 'qr-code', title: 'Share User', url: '/qr' },
-    { icon: 'heart', title: 'Favorites', url: '/folder/Favorites' },
-    { icon: 'archive', title: 'Archived', url: '/folder/Archived' },
-    { icon: 'trash', title: 'Trash', url: '/folder/Trash' },
-    { icon: 'warning', title: 'Spam', url: '/folder/Spam' },
+    { icon: 'chatbox', title: 'Chat', url: '/chat' },
+    { icon: 'list', title: 'Todo List', url: '/todo' },
   ];
 
   constructor(

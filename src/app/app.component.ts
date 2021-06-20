@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { environment } from 'src/environments/environment';
 import { PushService } from './services/push/push.service';
+import { RealtimeDatabaseService } from './services/realtime-database/realtime-database.service';
 import { SessionService } from './services/session/session.service';
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
     private readonly pushService: PushService,
     private readonly router: Router,
     private readonly sessionService: SessionService,
+    private readonly realtimeDatabaseService: RealtimeDatabaseService,
   ) {}
 
   public ngOnInit(): void {
@@ -40,7 +42,11 @@ export class AppComponent {
     this.pushService.startNotifications();
   }
 
-  private saveToken(token: string, uid: string) {
-    console.log('Todo: save token to user', token, uid);
+  private async saveToken(token: string, uid: string) {
+    try {
+      this.realtimeDatabaseService.write(`/tokens/${uid}`, token);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

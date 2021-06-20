@@ -10,12 +10,16 @@ const routes: Routes = [
     component: PagesPage,
     children: [
       {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
+        path: 'chat',
+        loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule),
+      },
+      {
+        path: 'todo',
+        loadChildren: () => import('./todo/todo.module').then(m => m.TodoPageModule),
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'chat',
         pathMatch: 'full',
       },
     ],
