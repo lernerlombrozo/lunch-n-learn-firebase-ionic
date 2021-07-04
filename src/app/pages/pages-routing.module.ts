@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'chat',
+        redirectTo: 'todo',
         pathMatch: 'full',
       },
     ],

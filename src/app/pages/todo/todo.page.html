@@ -3,8 +3,30 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentCreateTodoAlert()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Todo (Firestore Database)</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let todo of todos| async">
+      <ion-item>
+        <ion-label>{{todo.name}}</ion-label>
+        <ion-icon name="add-outline" slot="end" (click)="presentAddTodoAlert(todo.name)"></ion-icon>
+      </ion-item>
+      <ion-item *ngFor="let item of keys(todo.todos)">
+        <ion-label>{{item}}</ion-label>
+        <ion-checkbox
+          slot="start"
+          [(ngModel)]="todo.todos[item]"
+          (ionChange)="updateTodo(todo)"
+        ></ion-checkbox>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>
