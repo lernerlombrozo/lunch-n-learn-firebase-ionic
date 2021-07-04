@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase';
 import { environment } from 'src/environments/environment';
 import { PushService } from './services/push/push.service';
 import { RealtimeDatabaseService } from './services/realtime-database/realtime-database.service';

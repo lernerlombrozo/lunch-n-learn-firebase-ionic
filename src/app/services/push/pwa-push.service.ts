@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase/app';
-import 'firebase/messaging';
+import firebase from 'firebase';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
