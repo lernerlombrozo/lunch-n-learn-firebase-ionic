@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { environment } from 'src/environments/environment';
 import { PushService } from './services/push/push.service';
 import { RealtimeDatabaseService } from './services/realtime-database/realtime-database.service';
@@ -19,6 +20,7 @@ export class AppComponent {
   ) {}
 
   public ngOnInit(): void {
+    console.log('app started');
     firebase.initializeApp(environment.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {

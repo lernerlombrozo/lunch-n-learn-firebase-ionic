@@ -33,12 +33,12 @@ export class FirestoreService {
     return this.updateDocument(collection, document, data);
   }
 
-  public getCollection(collection: string): Observable<any> {
+  public getCollection(collection: string): Observable<any[]> {
     return new Observable(subscriber => {
       this.getCollectionRef(collection)
         .get()
         .then(snapshot => {
-          subscriber.next(snapshot);
+          subscriber.next(snapshot.docs);
         });
     });
   }
@@ -68,7 +68,7 @@ export class FirestoreService {
   public listenDocument(collection: string, document: string): Observable<any> {
     return new Observable(subscriber => {
       this.getDocumentRef(collection, document).onSnapshot(doc => {
-        console.log('Current data: ', doc.data());
+        subscriber.next(doc.data());
       });
     });
   }
