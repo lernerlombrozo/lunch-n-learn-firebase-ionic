@@ -15,7 +15,8 @@ export class PasswordPage {
   ) {}
 
   public onSubmit(form: NgForm): void {
-    this.authService.createUserWithEmailAndPassword(form.value.email, form.value.password).catch(err => {
+    console.log(form);
+    this.authService.sendPasswordResetEmail(form.value.email).catch(err => {
       this.presentToast(JSON.stringify(err));
     });
   }
